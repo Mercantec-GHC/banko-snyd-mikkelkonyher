@@ -12,6 +12,7 @@ namespace BankoCheater
         }
         static void BankoCard1()
         {
+            //Plade 1
             
             int[] rasmus1Row1 = new int[] { 1, 20, 32, 71, 80 };
             int[] rasmus1Row2 = new int[] { 3, 11, 21, 38, 44 };
@@ -23,7 +24,7 @@ namespace BankoCheater
             int[] mikkel1Row2 = new int[] { 4, 18, 24, 32, 62};
             int[] mikkel1Row3 = new int[] { 36, 59, 65, 79, 86};
 
-
+            
             Dictionary<string, int[]> dic = new Dictionary<string, int[]>();
             dic.Add("Rasmus1-row1", rasmus1Row1);
             dic.Add("Rasmus1-row2", rasmus1Row2);
@@ -118,7 +119,7 @@ namespace BankoCheater
                     }
                     if (row3Counter2 == 5)
                     {
-                        Console.WriteLine("BANKO! Mikkel row 2 madafaka!");
+                        Console.WriteLine("BANKO! Mikkel row 3 madafaka!");
                         row3Counter2++;
                     }
 
