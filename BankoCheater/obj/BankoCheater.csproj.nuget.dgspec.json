@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MAGS\\Documents\\GitHub\\BankoCheater\\BankoCheater.csproj": {}
+    "C:\\Users\\MAGS\\Documents\\GitHub\\banko-snyd-mikkelkonyher\\BankoCheater\\BankoCheater.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MAGS\\Documents\\GitHub\\BankoCheater\\BankoCheater.csproj": {
+    "C:\\Users\\MAGS\\Documents\\GitHub\\banko-snyd-mikkelkonyher\\BankoCheater\\BankoCheater.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MAGS\\Documents\\GitHub\\BankoCheater\\BankoCheater.csproj",
+        "projectUniqueName": "C:\\Users\\MAGS\\Documents\\GitHub\\banko-snyd-mikkelkonyher\\BankoCheater\\BankoCheater.csproj",
         "projectName": "BankoCheater",
-        "projectPath": "C:\\Users\\MAGS\\Documents\\GitHub\\BankoCheater\\BankoCheater.csproj",
+        "projectPath": "C:\\Users\\MAGS\\Documents\\GitHub\\banko-snyd-mikkelkonyher\\BankoCheater\\BankoCheater.csproj",
         "packagesPath": "C:\\Users\\MAGS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MAGS\\Documents\\GitHub\\BankoCheater\\obj\\",
+        "outputPath": "C:\\Users\\MAGS\\Documents\\GitHub\\banko-snyd-mikkelkonyher\\BankoCheater\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
