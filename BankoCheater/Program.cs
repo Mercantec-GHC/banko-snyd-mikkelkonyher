@@ -6,14 +6,24 @@ namespace BankoCheater
     {
         static void Main(string[] args)
         {
+            BankoCard1();
+        }
+        static void BankoCard1()
+        {
             int[] rasmus1Row1 = new int[] { 1, 20, 32, 71, 80 };
             int[] rasmus1Row2 = new int[] { 3, 11, 21, 38, 44 };
             int[] rasmus1Row3 = new int[] { 15, 29, 49, 58, 68 };
+                
+            //Ny plade
+
+            
 
             Dictionary<string, int[]> dic = new Dictionary<string, int[]>();
             dic.Add("Rasmus1-row1", rasmus1Row1);
             dic.Add("Rasmus1-row2", rasmus1Row2);
             dic.Add("Rasmus1-row3", rasmus1Row3);
+
+          
 
 
             int row1Counter = 0;
@@ -30,6 +40,7 @@ namespace BankoCheater
                 {
                     selectedNumber = int.Parse(Console.ReadLine());
 
+                    
                     foreach (var row in dic)
                     {
                         if (row.Value.Contains(selectedNumber))
@@ -81,6 +92,7 @@ namespace BankoCheater
             } while (fullPlate == false);
 
             Console.WriteLine("Fuld Plade mester jakel!");
+        
         }
     }
 }
