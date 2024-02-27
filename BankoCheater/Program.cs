@@ -3,6 +3,10 @@
 //1. Optimer koden så det bliver mere overskueligt, hvis man spiller med flere plader(methods, parametre etc.)
 //2. Hav mulighed for at spille videre selvom en af pladerne er "fuld plade".
 
+
+//Gem tallene i Json fil
+
+
 namespace BankoCheater
 {
     internal class Program
@@ -55,6 +59,10 @@ namespace BankoCheater
                 try
                 {
                     selectedNumber = int.Parse(Console.ReadLine());
+                    if (selectedNumber < 1 ||selectedNumber > 90)
+                    {
+                        Console.WriteLine("Only numbers between 1-90 is valid");
+                    }
 
                     
                     foreach (var row in dic)
