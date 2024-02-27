@@ -1,12 +1,5 @@
 ﻿using System.Net.Http.Headers;
 
-//1. Optimer koden så det bliver mere overskueligt, hvis man spiller med flere plader(methods, parametre etc.)
-//2. Hav mulighed for at spille videre selvom en af pladerne er "fuld plade".
-
-
-//Gem tallene i Json fil
-
-
 namespace BankoCheater
 {
     internal class Program
@@ -14,44 +7,55 @@ namespace BankoCheater
         static void Main(string[] args)
         {
          
-            //Plade 1
+            //Plate 1
             
-            int[] rasmus1Row1 = new int[] { 1, 20, 32, 71, 80 };
-            int[] rasmus1Row2 = new int[] { 3, 11, 21, 38, 44 };
-            int[] rasmus1Row3 = new int[] { 15, 29, 49, 58, 68 };
+            int[] rasmusRow1 = new int[] { 1, 20, 32, 71, 80 };
+            int[] rasmusRow2 = new int[] { 3, 11, 21, 38, 44 };
+            int[] rasmusRow3 = new int[] { 15, 29, 49, 58, 68 };
 
-            //Plade 2
+            //Plate 2
 
-            int[] mikkel1Row1 = new int[] { 1, 11, 21, 40, 51};
-            int[] mikkel1Row2 = new int[] { 4, 18, 24, 32, 62};
-            int[] mikkel1Row3 = new int[] { 36, 59, 65, 79, 86};
+            int[] mikkelRow1 = new int[] { 1, 11, 21, 40, 51};
+            int[] mikkelRow2 = new int[] { 4, 18, 24, 32, 62};
+            int[] mikkelRow3 = new int[] { 36, 59, 65, 79, 86};
 
+
+            // Create a dictionary to hold all players' rows
+            Dictionary<string, Dictionary<string, int[]>> playersRows = new Dictionary<string, Dictionary<string, int[]>>();
+
+            // Add Rasmus's rows
+            playersRows.Add("Rasmus", new Dictionary<string, int[]>
+            {
+                { "Rasmus-row1", rasmusRow1 },
+                { "Rasmus-row2", rasmusRow2 },
+                { "Rasmus-row3", rasmusRow3 }
+            });
+
+            // Add Mikkel's rows
+            playersRows.Add("Mikkel", new Dictionary<string, int[]>
+            {
+                { "Mikkel-row1", mikkelRow1 },
+                { "Mikkel-row2", mikkelRow2 },
+                { "Mikkel-row3", mikkelRow3 }
+            });
+
+            //Plate 1 counter
+
+            int row1CounterRasmus = 0;
+            int row2CounterRasmus = 0;
+            int row3CounterRasmus = 0;
+
+            //Plate 2 counter
+
+            int row1CounterMikkel = 0;
+            int row2CounterMikkel = 0;
+            int row3CounterMikkel = 0;
             
-            Dictionary<string, int[]> dic = new Dictionary<string, int[]>();
-
-            dic.Add("Rasmus1-row1", rasmus1Row1);
-            dic.Add("Rasmus1-row2", rasmus1Row2);
-            dic.Add("Rasmus1-row3", rasmus1Row3);
-
-            dic.Add("Mikkel1-row1", mikkel1Row1);
-            dic.Add("Mikkel1-row2", mikkel1Row2);
-            dic.Add("Mikkel1-row3", mikkel1Row3);
-
-            //Plade 1 counter
-            
-            int row1Counter = 0;
-            int row2Counter = 0;
-            int row3Counter = 0;
-
-            //Plade 2 counter
-
-            int row1Counter2 = 0;
-            int row2Counter2 = 0;
-            int row3Counter2 = 0;
-
             int selectedNumber;
             bool fullPlate = false;
-           
+            bool rasmusFullPlate = false;
+            bool mikkelFullPlate = false;
+
 
             do
             {
@@ -59,86 +63,102 @@ namespace BankoCheater
                 try
                 {
                     selectedNumber = int.Parse(Console.ReadLine());
-                    if (selectedNumber < 1 ||selectedNumber > 90)
+                    if (selectedNumber <1 || selectedNumber > 90)
                     {
-                        Console.WriteLine("Only numbers between 1-90 is valid");
+                        Console.WriteLine("Only numbers between 1-90 are valid");
                     }
 
-                    
-                    foreach (var row in dic)
+
+                    foreach (var player in playersRows)
                     {
-                        if (row.Value.Contains(selectedNumber))
+                        foreach (var row in player.Value)
                         {
-                            if (row.Key == "Rasmus1-row1")
+                            if (row.Value.Contains(selectedNumber))
                             {
-                                row1Counter++;
-                            }
-                            else if (row.Key == "Rasmus1-row2")
-                            {
-                                row2Counter++;
-                            }
-                            else if (row.Key == "Rasmus1-row3")
-                            {
-                                row3Counter++;
-                            }
+                                // If the numbers are found on Rasmus' plate
+                                if (row.Key == "Rasmus-row1")
+                                {
+                                    row1CounterRasmus++;
+                                }
+                                else if (row.Key == "Rasmus-row2")
+                                {
+                                    row2CounterRasmus++;
+                                }
+                                else if (row.Key == "Rasmus-row3")
+                                {
+                                    row3CounterRasmus++;
+                                }
 
-                            //Plade 2
-
-                            if(row.Key == "Mikkel1-row1")
-                            {
-                                row1Counter2++;
+                                // if the numbers are found on Mikkel's plate
+                                if (row.Key == "Mikkel-row1")
+                                {
+                                    row1CounterMikkel++;
+                                }
+                                else if (row.Key == "Mikkel-row2")
+                                {
+                                    row2CounterMikkel++;
+                                }
+                                else if (row.Key == "Mikkel-row3")
+                                {
+                                    row3CounterMikkel++;
+                                }
                             }
-                            else if(row.Key == "Mikkel1-row2")
-                            {
-                                row2Counter2++;
-                            }
-                            else if( row.Key == "Mikkel1-row3")
-                            {
-                                row3Counter2++;
-                            }
-
                         }
                     }
+                
+                    //Plade 1. If a row has 5 selected numbers it is set to 6
 
-                    if (row1Counter == 5)
+                    if (row1CounterRasmus == 5)
                     {
                         Console.WriteLine("BANKO! Rasmus Row1");
-                        row1Counter++;
+                        row1CounterRasmus++;
                     }
-                    if (row2Counter == 5)
+                    if (row2CounterRasmus == 5)
                     {
                         Console.WriteLine("BANKO! Rasmus Row2");
-                        row2Counter++;
+                        row2CounterRasmus++;
                     }
-                    if (row3Counter == 5)
+                    if (row3CounterRasmus == 5)
                     {
                         Console.WriteLine("BANKO! Rasmus Row3");
-                        row3Counter++;
+                        row3CounterRasmus++;
                     }
 
-                    //plade2
+                    //Plate 2
 
-                    if(row1Counter2 == 5)
+                    if(row1CounterMikkel == 5)
                     {
                         Console.WriteLine("BANKO! Mikkel row 1 madafaka!");
-                        row1Counter2++;
+                        row1CounterMikkel++;
                     }
-                    if (row2Counter2 == 5)
+                    if (row2CounterMikkel == 5)
                     {
                         Console.WriteLine("BANKO! Mikkel row 2 madafaka!");
-                        row2Counter2++;
+                        row2CounterMikkel++;
                     }
-                    if (row3Counter2 == 5)
+                    if (row3CounterMikkel == 5)
                     {
                         Console.WriteLine("BANKO! Mikkel row 3 madafaka!");
-                        row3Counter2++;
+                        row3CounterMikkel++;
                     }
 
-                    if (row1Counter == 6 && row2Counter == 6 && row3Counter == 6 || row1Counter2 == 6 && row2Counter2 == 6 && row3Counter2 == 6)
+                    //Checks if any of the plates are full
+
+                    if (row1CounterRasmus == 6 && row2CounterRasmus == 6 && row3CounterRasmus == 6 && !rasmusFullPlate)
+                    {
+                        Console.WriteLine("Rasmus Fuld Plade !");
+                        rasmusFullPlate = true;
+                    }
+                        
+                    if (row1CounterMikkel == 6 && row2CounterMikkel == 6 && row3CounterMikkel == 6 && !mikkelFullPlate)
+                    {
+                        Console.WriteLine("Mikkel Fuld Plade");
+                        mikkelFullPlate = true;
+                    }
+                    if(rasmusFullPlate && mikkelFullPlate)
                     {
                         fullPlate = true;
                     }
-
 
                 }
                 catch (FormatException)
@@ -150,15 +170,7 @@ namespace BankoCheater
 
             } while (fullPlate == false);
 
-            if(row1Counter == 6 && row2Counter == 6 && row3Counter == 6) //Rasmus counter
-            {
-                Console.WriteLine("Fuld Plade Rasmus!");
-            }
-            else if(row1Counter2 == 6 && row2Counter2 == 6 && row3Counter2 == 6) //Mikkel counter
-            {
-                Console.WriteLine("Fuld Plade Mikkel");
-            }
-
+            Console.WriteLine("All Plates are Full !");
         }
         
     }
