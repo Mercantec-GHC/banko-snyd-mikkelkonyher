@@ -1,5 +1,7 @@
 ﻿using System.Net.Http.Headers;
 
+//1. Optimer koden så det bliver mere overskueligt, hvis man spiller med flere plader(methods, parametre etc.)
+//2. Hav mulighed for at spille videre selvom en af pladerne er "fuld plade".
 
 namespace BankoCheater
 {
@@ -7,11 +9,7 @@ namespace BankoCheater
     {
         static void Main(string[] args)
         {
-           BankoCard1();  
-           
-        }
-        static void BankoCard1()
-        {
+         
             //Plade 1
             
             int[] rasmus1Row1 = new int[] { 1, 20, 32, 71, 80 };
@@ -26,6 +24,7 @@ namespace BankoCheater
 
             
             Dictionary<string, int[]> dic = new Dictionary<string, int[]>();
+
             dic.Add("Rasmus1-row1", rasmus1Row1);
             dic.Add("Rasmus1-row2", rasmus1Row2);
             dic.Add("Rasmus1-row3", rasmus1Row3);
@@ -34,17 +33,21 @@ namespace BankoCheater
             dic.Add("Mikkel1-row2", mikkel1Row2);
             dic.Add("Mikkel1-row3", mikkel1Row3);
 
+            //Plade 1 counter
             
             int row1Counter = 0;
             int row2Counter = 0;
             int row3Counter = 0;
+
+            //Plade 2 counter
+
             int row1Counter2 = 0;
             int row2Counter2 = 0;
             int row3Counter2 = 0;
+
             int selectedNumber;
             bool fullPlate = false;
            
-
 
             do
             {
@@ -129,8 +132,6 @@ namespace BankoCheater
                     }
 
 
-
-
                 }
                 catch (FormatException)
                 {
@@ -141,19 +142,19 @@ namespace BankoCheater
 
             } while (fullPlate == false);
 
-            if(row1Counter == 6 && row2Counter == 6 && row3Counter == 6)
+            if(row1Counter == 6 && row2Counter == 6 && row3Counter == 6) //Rasmus counter
             {
                 Console.WriteLine("Fuld Plade Rasmus!");
             }
-            else if(row1Counter2 == 6 && row2Counter2 == 6 && row3Counter2 == 6)
+            else if(row1Counter2 == 6 && row2Counter2 == 6 && row3Counter2 == 6) //Mikkel counter
             {
                 Console.WriteLine("Fuld Plade Mikkel");
             }
 
-           
-        
         }
-     }
+        
+    }
 }
+
 
 
