@@ -56,6 +56,8 @@ namespace BankoCheater
             bool rasmusFullPlate = false;
             bool mikkelFullPlate = false;
 
+            HashSet<int> drawnNumbers = new HashSet<int>(); //Makes that sure every drawn number is unique
+
 
             do
             {
@@ -63,10 +65,18 @@ namespace BankoCheater
                 try
                 {
                     selectedNumber = int.Parse(Console.ReadLine());
-                    if (selectedNumber <1 || selectedNumber > 90)
+                    if (selectedNumber < 1 || selectedNumber > 90)
                     {
                         Console.WriteLine("Only numbers between 1-90 are valid");
                     }
+                    
+                    if (drawnNumbers.Contains(selectedNumber))
+                    {
+                        Console.WriteLine("You have already drawn this number. Please select a different one.");
+                        continue; // Restart the loop if the number has already been drawn
+                    }
+
+                    drawnNumbers.Add(selectedNumber); // Add the selected number to the set of drawn numbers
 
 
                     foreach (var player in playersRows)
@@ -168,7 +178,7 @@ namespace BankoCheater
                 }
 
 
-            } while (fullPlate == false);
+            } while (fullPlate == false); //Is set to true when all plates are full
 
             Console.WriteLine("All Plates are Full !");
         }
