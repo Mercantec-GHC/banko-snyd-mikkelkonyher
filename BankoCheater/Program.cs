@@ -58,9 +58,10 @@ namespace BankoCheater
 
             HashSet<int> drawnNumbers = new HashSet<int>(); //Makes that sure every drawn number is unique
 
-
+                
             do
             {
+                
                 Console.Write("Enter a number: ");
                 try
                 {
@@ -77,7 +78,7 @@ namespace BankoCheater
                     }
 
                     drawnNumbers.Add(selectedNumber); // Add the selected number to the set of drawn numbers
-
+                    Console.WriteLine("Drawn Numbers: " + string.Join(", ", drawnNumbers) + " (Last added: " + DateTime.Now.ToString() + ")");
 
                     foreach (var player in playersRows)
                     {
