@@ -73,7 +73,7 @@ namespace BankoCheater
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nOnly numbers between 1-90 are valid");
                         Console.ResetColor();
-                        continue;
+                        continue; //Restarts loop if the enter number is not 1-90
                     }
                     
                     if (drawnNumbers.Contains(selectedNumber))
@@ -126,26 +126,26 @@ namespace BankoCheater
                         }
                     }
                 
-                    //Plade 1. If a row has 5 selected numbers it is set to 6 which indicates banko in row
+                    //Plate 1. If a row has 5 selectedNumbers it is set to 6 which indicates banko in row (By setting it to 6 we make sure it's not displayed multiple times)
 
                     if (row1CounterRasmus == 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("BANKO! Rasmus Row1\n");
+                        Console.WriteLine("BANKO! Rasmus Row 1\n");
                         Console.ResetColor();
                         row1CounterRasmus++;
                     }
                     if (row2CounterRasmus == 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nBANKO! Rasmus Row2\n");
+                        Console.WriteLine("\nBANKO! Rasmus Row 2\n");
                         Console.ResetColor();
                         row2CounterRasmus++;
                     }
                     if (row3CounterRasmus == 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("\nBANKO! Rasmus Row3\n");
+                        Console.WriteLine("\nBANKO! Rasmus Row 3\n");
                         Console.ResetColor();
                         row3CounterRasmus++;
                     }
@@ -155,21 +155,21 @@ namespace BankoCheater
                     if(row1CounterMikkel == 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("BANKO! Mikkel row 1 madafaka!\n");
+                        Console.WriteLine("BANKO! Mikkel Row 1 madafaka!\n");
                         Console.ResetColor();
                         row1CounterMikkel++;
                     }
                     if (row2CounterMikkel == 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("BANKO! Mikkel row 2 madafaka!\n");
+                        Console.WriteLine("BANKO! Mikkel Row 2 madafaka!\n");
                         Console.ResetColor();
                         row2CounterMikkel++;
                     }
                     if (row3CounterMikkel == 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("BANKO! Mikkel row 3 madafaka!\n");
+                        Console.WriteLine("BANKO! Mikkel Row 3 madafaka!\n");
                         Console.ResetColor();
                         row3CounterMikkel++;
                     }
@@ -179,7 +179,7 @@ namespace BankoCheater
                     if (row1CounterRasmus == 6 && row2CounterRasmus == 6 && row3CounterRasmus == 6 && !rasmusFullPlate)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("RASMUS FULD PLADE !!!!\n");
+                        Console.WriteLine("RASMUS FULD PLADE\n");
                         Console.ResetColor();
                         rasmusFullPlate = true;
                     }
@@ -187,14 +187,14 @@ namespace BankoCheater
                     if (row1CounterMikkel == 6 && row2CounterMikkel == 6 && row3CounterMikkel == 6 && !mikkelFullPlate)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("MIKKEL FULD PLADE !!!!\n");
+                        Console.WriteLine("MIKKEL FULD PLADE\n");
                         Console.ResetColor();
                         mikkelFullPlate = true;
                     }
-                    if(rasmusFullPlate && mikkelFullPlate)
+                    if(rasmusFullPlate && mikkelFullPlate) //If all plates are full you can exit game
                     {
-                        Console.Write("All PLATES ARE FULL, you cheater!!!\n\nType 'exit' and press enter to close the game: ");
-                        quitGame = Console.ReadLine().ToLower();
+                        Console.Write("All PLATES ARE FULL, you cheater!\n\nType 'exit' and press enter to close the game: ");
+                        quitGame = Console.ReadLine().ToLower().Trim();
 
                         if(quitGame == "exit")
                         {
@@ -204,7 +204,7 @@ namespace BankoCheater
                     }
 
                 }
-                catch (FormatException)
+                catch (FormatException) //Catches all inputs that are not numbers and prompts player.
                 {
                     Console.ForegroundColor= ConsoleColor.Red;
                     Console.WriteLine("\nNumbers only.");
@@ -212,7 +212,7 @@ namespace BankoCheater
                 }
 
 
-            } while (fullPlate == false); //Is set to true when all plates are full and there's been typed exit.
+            } while (fullPlate == false); //Is set to true when all plates are full and there's been typed exit. Game closes.
             
         }
         
