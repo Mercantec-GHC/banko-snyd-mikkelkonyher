@@ -179,7 +179,7 @@ namespace BankoCheater
                     if (row1CounterRasmus == 6 && row2CounterRasmus == 6 && row3CounterRasmus == 6 && !rasmusFullPlate)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("RASMUS FULD PLADE\n");
+                        Console.WriteLine("------------\nRASMUS FULD PLADE\n------------\n");
                         Console.ResetColor();
                         rasmusFullPlate = true;
                     }
@@ -187,7 +187,7 @@ namespace BankoCheater
                     if (row1CounterMikkel == 6 && row2CounterMikkel == 6 && row3CounterMikkel == 6 && !mikkelFullPlate)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("MIKKEL FULD PLADE\n");
+                        Console.WriteLine("------------\nMIKKEL FULD PLADE\n------------\n");
                         Console.ResetColor();
                         mikkelFullPlate = true;
                     }
