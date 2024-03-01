@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Headers;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System.Net.Http.Headers;
 
 namespace BankoCheater
 {
@@ -6,18 +8,18 @@ namespace BankoCheater
     {
         static void Main(string[] args)
         {
-         
+
             //Plate 1
-            
+
             int[] rasmusRow1 = new int[] { 1, 20, 32, 71, 80 };
             int[] rasmusRow2 = new int[] { 3, 11, 21, 38, 44 };
             int[] rasmusRow3 = new int[] { 15, 29, 49, 58, 68 };
 
             //Plate 2
 
-            int[] mikkelRow1 = new int[] { 1, 11, 21, 40, 51};
-            int[] mikkelRow2 = new int[] { 4, 18, 24, 32, 62};
-            int[] mikkelRow3 = new int[] { 36, 59, 65, 79, 86};
+            int[] mikkelRow1 = new int[] { 1, 11, 21, 40, 51 };
+            int[] mikkelRow2 = new int[] { 4, 18, 24, 32, 62 };
+            int[] mikkelRow3 = new int[] { 36, 59, 65, 79, 86 };
 
 
             // Create a dictionary to hold all players' rows
@@ -50,7 +52,7 @@ namespace BankoCheater
             int row1CounterMikkel = 0;
             int row2CounterMikkel = 0;
             int row3CounterMikkel = 0;
-            
+
             int selectedNumber;
             bool fullPlate = false;
             bool rasmusFullPlate = false;
@@ -60,10 +62,10 @@ namespace BankoCheater
 
             HashSet<int> drawnNumbers = new HashSet<int>(); //Makes that sure every drawn number is unique
 
-                
+
             do
             {
-                
+
                 Console.Write("Enter a number: ");
                 try
                 {
@@ -75,7 +77,7 @@ namespace BankoCheater
                         Console.ResetColor();
                         continue; //Restarts loop if the enter number is not 1-90
                     }
-                    
+
                     if (drawnNumbers.Contains(selectedNumber))
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -125,7 +127,7 @@ namespace BankoCheater
                             }
                         }
                     }
-                
+
                     //Plate 1. If a row has 5 selectedNumbers it is set to 6 which indicates banko in row (By setting it to 6 we make sure it's not displayed multiple times)
 
                     if (row1CounterRasmus == 5)
@@ -152,7 +154,7 @@ namespace BankoCheater
 
                     //Plate 2
 
-                    if(row1CounterMikkel == 5)
+                    if (row1CounterMikkel == 5)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("BANKO! Mikkel Row 1 madafaka!\n");
@@ -183,7 +185,7 @@ namespace BankoCheater
                         Console.ResetColor();
                         rasmusFullPlate = true;
                     }
-                        
+
                     if (row1CounterMikkel == 6 && row2CounterMikkel == 6 && row3CounterMikkel == 6 && !mikkelFullPlate)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -191,31 +193,40 @@ namespace BankoCheater
                         Console.ResetColor();
                         mikkelFullPlate = true;
                     }
-                    if(rasmusFullPlate && mikkelFullPlate) //If all plates are full you can exit game
+                    if (rasmusFullPlate && mikkelFullPlate) //If all plates are full you can exit game
                     {
                         Console.Write("All PLATES ARE FULL, you cheater!\n\nType 'exit' and press enter to close the game: ");
                         quitGame = Console.ReadLine().ToLower().Trim();
 
-                        if(quitGame == "exit")
+                        if (quitGame == "exit")
                         {
-                          fullPlate = true;
+                            fullPlate = true;
                         }
-                       
+
                     }
 
                 }
                 catch (FormatException) //Catches all inputs that are not numbers and prompts player.
                 {
-                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nNumbers only.");
                     Console.ResetColor();
                 }
 
 
             } while (fullPlate == false); //Is set to true when all plates are full and there's been typed exit. Game closes.
-            
+
+
+
+            //SELENIUM EKSPERIMENTERING
+
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://mags-template.github.io/Banko/");
+
+
+
         }
-        
+
     }
 }
 
